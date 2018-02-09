@@ -1,0 +1,10 @@
+contract ERC20Interface {
+ 6     function totalSupply() public constant returns (uint);
+ 7     function balanceOf(address tokenOwner) public constant returns (uint balance);
+ 8     function allowance(address tokenOwner, address spender) public constant returns (uint remaining);
+ 9     function transfer(address to, uint tokens) public returns (bool success);
+10     function approve(address spender, uint tokens) public returns (bool success);
+11     function transferFrom(address from, address to, uint tokens) public returns (bool success);
+12 
+13     event Transfer(address indexed from, address indexed to, uint tokens);
+14     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
