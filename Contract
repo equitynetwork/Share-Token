@@ -1,0 +1,32 @@
+pragma solidity ^0.4.19;
+
+import "./StandardToken.sol";
+import "./Ownable.sol";
+
+
+/**
+ *  Shares token contract. Implements
+ */
+contract Shares is StandardToken, Ownable {
+  string public constant name = "Shares";
+  string public constant symbol = "SHRS";
+  uint public constant decimals = 0;
+
+
+  // Constructor
+  function Shares() {
+      totalSupply = 1000000000;
+      balances[msg.sender] = totalSupply; // Send all tokens to owner
+  }
+
+  /**
+   *  Burn away the specified amount of Shares tokens
+   */
+  function burn(uint _value) onlyOwner returns (bool) {
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    totalSupply = totalSupply.sub(_value);
+    Transfer(msg.sender, 0x0, _value);
+    return true;
+  }
+
+}
